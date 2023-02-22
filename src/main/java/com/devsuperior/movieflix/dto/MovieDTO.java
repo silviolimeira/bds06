@@ -1,153 +1,141 @@
 package com.devsuperior.movieflix.dto;
 
-import com.devsuperior.movieflix.entities.Genre;
-import com.devsuperior.movieflix.entities.Movie;
-import com.devsuperior.movieflix.entities.Review;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.devsuperior.movieflix.entities.Movie;
+import com.devsuperior.movieflix.entities.Review;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class MovieDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private Long id;
-    private String title;
-    private String subTitle;
-    private Integer year;
-    private String imgUrl;
-    private String synopsis;
+	private Long id;
+	private String title;
+	private String subTitle;
+	private Integer year;
+	private String imgUrl;
+	private String synopsis;
 
-    GenreDTO genre;
+	GenreDTO genre;
 
-    @JsonIgnore
-    private List<ReviewDTO> reviewsDTO = new ArrayList<>();
+	@JsonIgnore
+	private List<ReviewDTO> reviewsDTO = new ArrayList<>();
 
-    public MovieDTO() {
-    }
+	public MovieDTO() {
+	}
 
-    public MovieDTO(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis) {
-        this.id = id;
-        this.title = title;
-        this.subTitle = subTitle;
-        this.year = year;
-        this.imgUrl = imgUrl;
-        this.synopsis = synopsis;
-    }
+	public MovieDTO(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis) {
+		this.id = id;
+		this.title = title;
+		this.subTitle = subTitle;
+		this.year = year;
+		this.imgUrl = imgUrl;
+		this.synopsis = synopsis;
+	}
 
-    public MovieDTO(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis, GenreDTO genreDTO) {
-        this(id,title,subTitle,year,imgUrl,synopsis);
-        this.genre = genreDTO;
-    }
+	public MovieDTO(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis,
+			GenreDTO genreDTO) {
+		this(id, title, subTitle, year, imgUrl, synopsis);
+		this.genre = genreDTO;
+	}
 
-    public MovieDTO(Long movieId) {
-        id = movieId;
-    }
+	public MovieDTO(Long movieId) {
+		id = movieId;
+	}
 
-    public MovieDTO(Movie entity) {
-    	id = entity.getId();
-        title = entity.getTitle();
-        subTitle = entity.getSubTitle();
-        year = entity.getYear();
-        imgUrl = entity.getImgUrl();
-        synopsis = entity.getSynopsis();
-        genre = new GenreDTO(entity.getGenre());
-    }
-    
-    public MovieDTO(Movie entity, List<Review> reviews) {
-    	this(entity);
-    	this.reviewsDTO = reviews.stream().map(r -> new ReviewDTO(r)).collect(Collectors.toList());
-    }
-    
+	public MovieDTO(Movie entity) {
+		id = entity.getId();
+		title = entity.getTitle();
+		subTitle = entity.getSubTitle();
+		year = entity.getYear();
+		imgUrl = entity.getImgUrl();
+		synopsis = entity.getSynopsis();
+		genre = new GenreDTO(entity.getGenre());
+	}
 
-    public GenreDTO getGenre() {
-        return genre;
-    }
+	public MovieDTO(Movie entity, List<Review> reviews) {
+		this(entity);
+		this.reviewsDTO = reviews.stream().map(r -> new ReviewDTO(r)).collect(Collectors.toList());
+	}
 
-    public void setGenre(GenreDTO genre) {
-        this.genre = genre;
-    }
+	public GenreDTO getGenre() {
+		return genre;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setGenre(GenreDTO genre) {
+		this.genre = genre;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getSubTitle() {
-        return subTitle;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
-    }
+	public String getSubTitle() {
+		return subTitle;
+	}
 
-    public Integer getYear() {
-        return year;
-    }
+	public void setSubTitle(String subTitle) {
+		this.subTitle = subTitle;
+	}
 
-    public void setYear(Integer year) {
-        this.year = year;
-    }
+	public Integer getYear() {
+		return year;
+	}
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
+	public void setYear(Integer year) {
+		this.year = year;
+	}
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
+	public String getImgUrl() {
+		return imgUrl;
+	}
 
-    public String getSynopsis() {
-        return synopsis;
-    }
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
 
-    public void setSynopsis(String synopsis) {
-        this.synopsis = synopsis;
-    }
+	public String getSynopsis() {
+		return synopsis;
+	}
 
-    public List<ReviewDTO> getReviewsDTO() {
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
+	}
+
+	public List<ReviewDTO> getReviewsDTO() {
 		return reviewsDTO;
 	}
-    
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        MovieDTO movieDTO = (MovieDTO) o;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
 
-        return id.equals(movieDTO.id);
-    }
+		MovieDTO movieDTO = (MovieDTO) o;
 
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
+		return id.equals(movieDTO.id);
+	}
 
-    @Override
-    public String toString() {
-        return "MovieDTO{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", subTitle='" + subTitle + '\'' +
-                ", year=" + year +
-                ", imgUrl='" + imgUrl + '\'' +
-                ", synopsis='" + synopsis + '\'' +
-                ", genre=" + genre +
-                ", reviewsDTO=" + reviewsDTO +
-                '}';
-    }
+	@Override
+	public int hashCode() {
+		return id.hashCode();
+	}
+
 }

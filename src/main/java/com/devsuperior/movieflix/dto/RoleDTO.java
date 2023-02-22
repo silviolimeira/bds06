@@ -1,8 +1,8 @@
 package com.devsuperior.movieflix.dto;
 
-import com.devsuperior.movieflix.entities.Role;
-
 import java.io.Serializable;
+
+import com.devsuperior.movieflix.entities.Role;
 
 public class RoleDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

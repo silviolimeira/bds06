@@ -1,16 +1,15 @@
 package com.devsuperior.movieflix.dto;
 
-import com.devsuperior.movieflix.entities.Movie;
-import com.devsuperior.movieflix.entities.Review;
-import com.devsuperior.movieflix.repositories.MovieRepository;
-import com.devsuperior.movieflix.services.exceptions.AuthService;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.io.Serializable;
 import java.util.Objects;
 
 import javax.validation.constraints.NotBlank;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.devsuperior.movieflix.entities.Review;
+import com.devsuperior.movieflix.repositories.MovieRepository;
+import com.devsuperior.movieflix.services.exceptions.AuthService;
 
 public class ReviewInsertDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

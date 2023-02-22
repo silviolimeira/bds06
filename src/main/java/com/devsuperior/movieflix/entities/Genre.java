@@ -19,60 +19,63 @@ import com.devsuperior.movieflix.dto.GenreDTO;
 @Table(name = "tb_genre")
 public class Genre implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String name;
 
-    public Genre() {}
+	public Genre() {
+	}
 
-    public Genre(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	public Genre(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-    public Genre(GenreDTO dto) {
-        id = dto.getId();
-        name = dto.getName();
-    }
+	public Genre(GenreDTO dto) {
+		id = dto.getId();
+		name = dto.getName();
+	}
 
-    @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
-    private List<Movie> movies = new ArrayList<>();
+	@OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
+	private List<Movie> movies = new ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
 
-        Genre genre = (Genre) o;
+		Genre genre = (Genre) o;
 
-        return Objects.equals(id, genre.id);
-    }
+		return Objects.equals(id, genre.id);
+	}
 
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
+	@Override
+	public int hashCode() {
+		return id != null ? id.hashCode() : 0;
+	}
 
-    public List<Movie> getMovies() {
-        return movies;
-    }
+	public List<Movie> getMovies() {
+		return movies;
+	}
 }

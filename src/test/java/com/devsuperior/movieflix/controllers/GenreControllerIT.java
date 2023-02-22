@@ -26,15 +26,15 @@ public class GenreControllerIT {
 
 	@Autowired
 	private TokenUtil tokenUtil;
-	
+
 	private String visitorUsername;
 	private String visitorPassword;
 	private String memberUsername;
 	private String memberPassword;
-	
+
 	@BeforeEach
 	void setUp() throws Exception {
-		
+
 		visitorUsername = "bob@gmail.com";
 		visitorPassword = "123456";
 		memberUsername = "ana@gmail.com";
@@ -44,22 +44,18 @@ public class GenreControllerIT {
 	@Test
 	public void findAllShouldReturnUnauthorizedWhenNotValidToken() throws Exception {
 
-		ResultActions result =
-				mockMvc.perform(get("/genres")
-					.contentType(MediaType.APPLICATION_JSON));
+		ResultActions result = mockMvc.perform(get("/genres").contentType(MediaType.APPLICATION_JSON));
 
 		result.andExpect(status().isUnauthorized());
 	}
-	
+
 	@Test
 	public void findAllShouldReturnAllGenresWhenVisitorAuthenticated() throws Exception {
 
 		String accessToken = tokenUtil.obtainAccessToken(mockMvc, visitorUsername, visitorPassword);
-		
-		ResultActions result =
-				mockMvc.perform(get("/genres")
-					.header("Authorization", "Bearer " + accessToken)
-					.contentType(MediaType.APPLICATION_JSON));
+
+		ResultActions result = mockMvc.perform(get("/genres").header("Authorization", "Bearer " + accessToken)
+				.contentType(MediaType.APPLICATION_JSON));
 
 		result.andExpect(status().isOk());
 		result.andExpect(jsonPath("$[0].id").value(1L));
@@ -69,16 +65,14 @@ public class GenreControllerIT {
 		result.andExpect(jsonPath("$[2].id").value(3L));
 		result.andExpect(jsonPath("$[2].name").value("Drama"));
 	}
-	
+
 	@Test
 	public void findAllShouldReturnAllGenresWhenMemberAuthenticated() throws Exception {
 
 		String accessToken = tokenUtil.obtainAccessToken(mockMvc, memberUsername, memberPassword);
 
-		ResultActions result =
-				mockMvc.perform(get("/genres")
-					.header("Authorization", "Bearer " + accessToken)
-					.contentType(MediaType.APPLICATION_JSON));
+		ResultActions result = mockMvc.perform(get("/genres").header("Authorization", "Bearer " + accessToken)
+				.contentType(MediaType.APPLICATION_JSON));
 
 		result.andExpect(status().isOk());
 		result.andExpect(jsonPath("$[0].id").value(1L));

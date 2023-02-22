@@ -32,11 +32,6 @@ public class ReviewMovieDTO implements Serializable {
 	public ReviewMovieDTO() {
 	}
 
-//	public ReviewMovieDTO(Long id, @NotBlank String text) {
-//		this.id = id;
-//		this.text = text;
-//	}
-
 	public ReviewMovieDTO(Long id, @NotBlank String text, Long movieId, UserDTO user) {
 		this.id = id;
 		this.text = text;

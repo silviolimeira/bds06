@@ -1,15 +1,30 @@
 package com.devsuperior.movieflix.entities;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.devsuperior.movieflix.dto.UserDTO;
-
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tb_user")
@@ -24,7 +39,7 @@ public class User implements UserDetails, Serializable {
 
 	@Column(unique = true)
 	private String email;
-	
+
 	private String password;
 
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -43,11 +58,11 @@ public class User implements UserDetails, Serializable {
 		this.email = email;
 		this.password = password;
 	}
-	
+
 	public User(Long userId) {
 		id = userId;
 	}
-	
+
 	public User(UserDTO dto) {
 		id = dto.getId();
 		name = dto.getName();
@@ -88,6 +103,10 @@ public class User implements UserDetails, Serializable {
 
 	public Set<com.devsuperior.movieflix.entities.Role> getRoles() {
 		return roles;
+	}
+	
+	public List<Review> getReviews() {
+		return reviews;
 	}
 
 	@Override

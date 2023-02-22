@@ -1,13 +1,10 @@
 package com.devsuperior.movieflix.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.devsuperior.movieflix.entities.Movie;
 import com.devsuperior.movieflix.entities.Review;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class MovieGenreDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -17,9 +14,6 @@ public class MovieGenreDTO implements Serializable {
 	private String subTitle;
 	private Integer year;
 	private String imgUrl;
-
-	// @JsonIgnore
-	// GenreDTO genre;
 
 	public MovieGenreDTO() {
 	}

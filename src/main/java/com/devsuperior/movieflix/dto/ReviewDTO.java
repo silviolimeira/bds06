@@ -1,16 +1,15 @@
 package com.devsuperior.movieflix.dto;
 
-import com.devsuperior.movieflix.entities.Movie;
-import com.devsuperior.movieflix.entities.Review;
-import com.devsuperior.movieflix.repositories.MovieRepository;
-import com.devsuperior.movieflix.services.exceptions.AuthService;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.io.Serializable;
 import java.util.Objects;
 
 import javax.validation.constraints.NotBlank;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.devsuperior.movieflix.entities.Review;
+import com.devsuperior.movieflix.repositories.MovieRepository;
+import com.devsuperior.movieflix.services.exceptions.AuthService;
 
 public class ReviewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -22,14 +21,14 @@ public class ReviewDTO implements Serializable {
 	MovieRepository movieRepository;
 
 	private Long id;
-	
+
 	@NotBlank
 	private String text;
 
 	private Long movieId;
 
 	private Long userId;
-	
+
 	public ReviewDTO() {
 	}
 
@@ -38,7 +37,7 @@ public class ReviewDTO implements Serializable {
 		this.movieId = movieId;
 		this.userId = userId;
 	}
-	
+
 	public ReviewDTO(Review entity) {
 		id = entity.getId();
 		text = entity.getText();
@@ -95,9 +94,4 @@ public class ReviewDTO implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
-	@Override
-	public String toString() {
-		return "ReviewDTO [id=" + id + ", text=" + text + ", movieId=" + movieId + ", userId=" + userId + "]";
-	}
-	
 }

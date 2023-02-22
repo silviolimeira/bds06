@@ -22,22 +22,20 @@ import com.devsuperior.movieflix.services.ReviewService;
 @RequestMapping(value = "/reviews")
 public class ReviewResource {
 
-    @Autowired
-    ReviewService service;
+	@Autowired
+	ReviewService service;
 
-    @GetMapping
-    public ResponseEntity<List<ReviewDTO>> findAll()
-    {
-        List<ReviewDTO> list = service.findAll();
-        return ResponseEntity.ok().body(list);
-    }
+	@GetMapping
+	public ResponseEntity<List<ReviewDTO>> findAll() {
+		List<ReviewDTO> list = service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
 
-    @PostMapping
-    public ResponseEntity<ReviewInsertDTO> insert(@Valid @RequestBody ReviewInsertDTO dto) {
-        dto = service.insert(dto);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
-        return ResponseEntity.created(uri).body(dto);
-    }
-
+	@PostMapping
+	public ResponseEntity<ReviewInsertDTO> insert(@Valid @RequestBody ReviewInsertDTO dto) {
+		dto = service.insert(dto);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
+		return ResponseEntity.created(uri).body(dto);
+	}
 
 }

@@ -1,6 +1,5 @@
 package com.devsuperior.movieflix.dto;
 
-
 import com.devsuperior.movieflix.validations.UserInsertValid;
 
 @UserInsertValid

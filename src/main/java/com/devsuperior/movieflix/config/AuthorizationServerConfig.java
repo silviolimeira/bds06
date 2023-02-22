@@ -48,7 +48,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Autowired
 	private UserService userDetailsService;
-	
+
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
@@ -56,13 +56,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.inMemory()
-			.withClient(clientId)
-			.secret(passwordEncoder.encode(clientSecret))
-			.scopes("read", "write")
-			.authorizedGrantTypes("password", "refresh_token")
-			.accessTokenValiditySeconds(jwtDuration)
-			.refreshTokenValiditySeconds(jwtDuration);
+		clients.inMemory().withClient(clientId).secret(passwordEncoder.encode(clientSecret)).scopes("read", "write")
+				.authorizedGrantTypes("password", "refresh_token").accessTokenValiditySeconds(jwtDuration)
+				.refreshTokenValiditySeconds(jwtDuration);
 	}
 
 	@Override

@@ -1,18 +1,20 @@
 package com.devsuperior.movieflix.validations;
 
-import com.devsuperior.movieflix.dto.UserUpdateDTO;
-import com.devsuperior.movieflix.entities.User;
-import com.devsuperior.movieflix.repositories.UserRepository;
-import com.devsuperior.movieflix.resources.exceptions.FieldMessage;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.servlet.HandlerMapping;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.HandlerMapping;
+
+import com.devsuperior.movieflix.dto.UserUpdateDTO;
+import com.devsuperior.movieflix.entities.User;
+import com.devsuperior.movieflix.repositories.UserRepository;
+import com.devsuperior.movieflix.resources.exceptions.FieldMessage;
 
 public class UserUpdateValidator implements ConstraintValidator<UserUpdateValid, UserUpdateDTO> {
 

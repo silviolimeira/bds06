@@ -1,18 +1,19 @@
 package com.devsuperior.movieflix.services.exceptions;
 
-import com.devsuperior.movieflix.entities.User;
-import com.devsuperior.movieflix.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.devsuperior.movieflix.entities.User;
+import com.devsuperior.movieflix.repositories.UserRepository;
 
 @Service
 public class AuthService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Transactional(readOnly = true)
 	public User authenticated() {
 		try {
@@ -22,7 +23,7 @@ public class AuthService {
 			throw new UnauthorizedException("Invalid user");
 		}
 	}
-	
+
 	public void validateSelfOrAdmin(Long userId) {
 		User user = authenticated();
 		if (!user.getId().equals(userId) && !user.hasHole("ROLE_ADMIN")) {

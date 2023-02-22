@@ -81,14 +81,4 @@ public class UserDTO implements Serializable {
 		return roles;
 	}
 
-	@Override
-	public String toString() {
-		return "UserDTO{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", email='" + email + '\'' +
-				", roles=" + roles +
-				", reviewsDTO=" + reviewsDTO +
-				'}';
-	}
 }

@@ -38,21 +38,12 @@ public class MovieResource {
 	@Autowired
 	UserService userService;
 
-//    @GetMapping()
-//    public ResponseEntity<Page<MovieDTO>> findAll(Pageable pageable)
-//    {
-//
-//        Page<MovieDTO> page = service.findAllOrderByTitle(pageable);
-//        return ResponseEntity.ok().body(page);
-//    }
-
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<MovieDTO> findById(@PathVariable Long id) {
 		MovieDTO dto = movieService.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
-	
-	
+
 	@GetMapping
 	public ResponseEntity<Page<MovieGenreDTO>> find(@RequestParam(name = "genreId", defaultValue = "0") Long genreId,
 			Pageable pageable) {
@@ -66,21 +57,9 @@ public class MovieResource {
 	public ResponseEntity<List<ReviewMovieDTO>> findReviews(@PathVariable Long id) {
 		MovieDTO movieDTO = movieService.findById(id);
 
-//		List<ReviewDTO> list = movieDTO.getReviewsDTO();
-//		List<ReviewMovieDTO> result = new ArrayList<>();
-//		for (ReviewDTO r : list) {
-//			Long userId = r.getUserId();
-//			UserDTO userDTO = userService.findById(userId);
-//			ReviewMovieDTO r1 = new ReviewMovieDTO(r.getId(), r.getText(), userDTO.getName());
-//			System.out.println(r1);
-//					
-//			result.add(r1);
-//			
-//		}
-
 		List<ReviewMovieDTO> result = movieDTO.getReviewsDTO().stream().map(r -> {
 			UserDTO userDTO = userService.findById(r.getUserId());
-			//(Long id, @NotBlank String text, Long movieId, UserDTO user) {
+			// (Long id, @NotBlank String text, Long movieId, UserDTO user) {
 
 			return new ReviewMovieDTO(r.getId(), r.getText(), r.getMovieId(), userDTO);
 		}).collect(Collectors.toList());

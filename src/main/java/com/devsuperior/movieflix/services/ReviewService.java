@@ -51,7 +51,7 @@ public class ReviewService {
 		entity.setMovie(movie);
 		entity.setText(dto.getText());
 		entity.setUser(authService.authenticated());
-		
+
 		entity = repository.save(entity);
 		dto.setId(entity.getId());
 		return dto;
@@ -64,16 +64,5 @@ public class ReviewService {
 		Review entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 		return new ReviewDTO(entity);
 	}
-
-//	private void copyDtoToEntity(ReviewDTO dto, Review entity) {
-//		logger.info("dto: {}", dto.toString());
-//		logger.info("getMivieId(): {}", dto.getMovieId().toString());
-//		entity.setMovie(movieRepository.getOne(dto.getMovieId()));
-//		logger.info(entity.getMovie().toString());
-//		entity.setText(dto.getText());
-//		entity.setUser(new User(dto.getUser()));
-//		//entity.setMovie(new Movie(dto.getMovie()));
-//		logger.info("Review Entity: {}", entity);
-//	}
 
 }
