@@ -86,6 +86,6 @@ public class GenreControllerIT {
 		result.andExpect(jsonPath("$[1].id").value(2L));
 		result.andExpect(jsonPath("$[1].name").value("Terror"));
 		result.andExpect(jsonPath("$[2].id").value(3L));
-		result.andExpect(jsonPath("$[2].name").value("Drama"));		
+		result.andExpect(jsonPath("$[2].name").value("Drama"));
 	}
 }

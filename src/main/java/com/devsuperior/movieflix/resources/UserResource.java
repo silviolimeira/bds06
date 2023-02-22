@@ -1,9 +1,9 @@
-package com.devsuperior.movieflix.resources.exceptions;
+package com.devsuperior.movieflix.resources;
 
 import com.devsuperior.movieflix.dto.UserDTO;
 import com.devsuperior.movieflix.dto.UserInsertDTO;
 import com.devsuperior.movieflix.dto.UserUpdateDTO;
-import com.devsuperior.movieflix.services.exceptions.UserService;
+import com.devsuperior.movieflix.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

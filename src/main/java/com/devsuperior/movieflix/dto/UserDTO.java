@@ -1,12 +1,16 @@
 package com.devsuperior.movieflix.dto;
 
-import com.devsuperior.movieflix.entities.User;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+
+import com.devsuperior.movieflix.entities.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -19,7 +23,11 @@ public class UserDTO implements Serializable {
 	@Email(message = "Favor entrar um email válido")
 	private String email;
 
+	@JsonIgnore
 	Set<RoleDTO> roles = new HashSet<>();
+
+	@JsonIgnore
+	List<ReviewDTO> reviewsDTO = new ArrayList<>();
 
 	public UserDTO() {
 	}
@@ -35,6 +43,14 @@ public class UserDTO implements Serializable {
 		name = entity.getName();
 		email = entity.getEmail();
 		entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
+	}
+
+	public List<ReviewDTO> getReviewsDTO() {
+		return reviewsDTO;
+	}
+
+	public void addReview(ReviewDTO reviewDTO) {
+		this.reviewsDTO.add(reviewDTO);
 	}
 
 	public Long getId() {
@@ -63,5 +79,16 @@ public class UserDTO implements Serializable {
 
 	public Set<RoleDTO> getRoles() {
 		return roles;
+	}
+
+	@Override
+	public String toString() {
+		return "UserDTO{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", email='" + email + '\'' +
+				", roles=" + roles +
+				", reviewsDTO=" + reviewsDTO +
+				'}';
 	}
 }

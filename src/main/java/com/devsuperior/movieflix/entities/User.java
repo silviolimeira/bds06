@@ -4,11 +4,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.devsuperior.movieflix.dto.UserDTO;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
@@ -31,15 +31,27 @@ public class User implements UserDetails, Serializable {
 	@JoinTable(name = "tb_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<com.devsuperior.movieflix.entities.Role> roles = new HashSet<>();
 
+	@OneToMany(mappedBy = "user")
+	private List<Review> reviews = new ArrayList<>();
+
 	public User() {
 	}
 
 	public User(Long id, String name, String email, String password) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;
+	}
+	
+	public User(Long userId) {
+		id = userId;
+	}
+	
+	public User(UserDTO dto) {
+		id = dto.getId();
+		name = dto.getName();
+		email = dto.getEmail();
 	}
 
 	public Long getId() {
